@@ -1,0 +1,15 @@
+body {
+    margin: 0;
+}
+
+a {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -30px 0 0 -200px;
+    display: block;
+    text-align: center;
+    width: 400px;
+    height: 60px;
+    font-size: 60px;
+}
