@@ -1,0 +1,19 @@
+{
+    "manifest_version": 2,
+    "name": "QRCode",
+    "description": "Generate qrcode with url schema.",
+    "version": "1.0",
+    "browser_action": {
+        "default_icon": "img/icon-128.png",
+        "default_popup": "index.html"
+    },
+    "permissions": [
+        "tabs",
+        "storage"
+    ],
+    "icons": {
+        "128": "img/icon-128.png",
+        "48": "img/icon-48.png",
+        "16": "img/icon-16.png"
+    }
+}
