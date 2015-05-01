@@ -18,6 +18,19 @@ input {
     padding: 0;
 }
 
+input:focus {
+    border: 1px solid #e74c3c;
+    background-color: #fff;
+}
+
+input::-webkit-input-placeholder {
+    color: #ccc;
+}
+
+input:focus::-webkit-input-placeholder {
+    color: #fff;
+}
+
 .url-input {
     margin: 20px;
 }
