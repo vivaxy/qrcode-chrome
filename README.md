@@ -1,10 +1,10 @@
 # qrcode-chrome
 chrome extension
 
-# [download](http://vivaxy.github.io/qrcode-chrome/qrcode.crx)
+## [download](http://vivaxy.github.io/qrcode-chrome/qrcode.crx)
 
-# screenshot
+## screenshot
 
 ![0](screenshot/0.png)
 
-# use [online](http://vivaxy.github.io/qrcode-chrome/src/index.html)
+## use [online](http://vivaxy.github.io/qrcode-chrome/dest/index.html)
