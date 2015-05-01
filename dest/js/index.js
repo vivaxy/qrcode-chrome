@@ -55,18 +55,13 @@ try {
     chrome.storage.sync.get('schema', function (storage) {
         $schema0.val(storage.schema[0]);
         $schema1.val(storage.schema[1]);
+
+        // generate url and qr code
+        chrome.tabs.getSelected(null, function (tab) {
+            $url.val(tab.url);
+            $url.trigger('keyup');
+        });
     });
 } catch (e) {
     console.log(e);
 }
-
-try {
-    // generate url and qr code
-    chrome.tabs.getSelected(null, function (tab) {
-        $url.val(tab.url);
-    });
-} catch (e) {
-    console.log(e);
-}
-
-$url.trigger('keyup');

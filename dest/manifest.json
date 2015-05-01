@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "QRCode",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Generate qrcode with url schema.",
     "icons": {
         "128": "img/icon-128.png",
