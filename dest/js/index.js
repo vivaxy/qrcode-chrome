@@ -65,3 +65,7 @@ try {
 } catch (e) {
     console.log(e);
 }
+
+setTimeout(function () {
+    $('body').removeClass('pull-up');
+}, 0);
