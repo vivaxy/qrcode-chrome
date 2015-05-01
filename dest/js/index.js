@@ -37,23 +37,35 @@ var utf16to8 = function (str) {
         $qr1.html('').qrcode({
             text: utf16to8(schema1 + $url.val())
         });
-        chrome.storage.sync.set({'schema': [schema0, schema1]}, function () {
-            // Notify that we saved.
-        });
+        try {
+            chrome.storage.sync.set({'schema': [schema0, schema1]}, function () {
+                // Notify that we saved.
+            });
+        } catch (e) {
+            console.log(e);
+        }
     };
 
 $url.on('keyup', generateQr);
 $schema0.on('keyup', generateQr);
 $schema1.on('keyup', generateQr);
 
-// init input data
-chrome.storage.sync.get('schema', function (storage) {
-    $schema0.val(storage.schema[0]);
-    $schema1.val(storage.schema[1]);
-});
+try {
+    // init input data
+    chrome.storage.sync.get('schema', function (storage) {
+        $schema0.val(storage.schema[0]);
+        $schema1.val(storage.schema[1]);
+    });
+} catch (e) {
+    console.log(e);
+}
 
-// generate url and qr code
-chrome.tabs.getSelected(null,function(tab) {
-    $url.val(tab.url);
-    $url.trigger('keyup');
-});
+try {
+    // generate url and qr code
+    chrome.tabs.getSelected(null, function (tab) {
+        $url.val(tab.url);
+        $url.trigger('keyup');
+    });
+} catch (e) {
+    console.log(e);
+}
