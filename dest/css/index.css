@@ -10,7 +10,7 @@ input {
     font-size: 12px;
     line-height: 20px;
     height: 20px;
-    border: 1px solid #ddd;
+    border: none;
     background-color: #eee;
     color: #333;
     width: 100%;
@@ -19,8 +19,13 @@ input {
 }
 
 input:focus {
-    border: 1px solid #e74c3c;
-    background-color: #fff;
+    color: #fff;
+    background-color: #e74c3c;
+}
+
+input::selection {
+    background-color: #ff0;
+    color: #333;
 }
 
 input::-webkit-input-placeholder {
@@ -28,7 +33,7 @@ input::-webkit-input-placeholder {
 }
 
 input:focus::-webkit-input-placeholder {
-    color: #fff;
+    color: #e74c3c;
 }
 
 .url-input {
