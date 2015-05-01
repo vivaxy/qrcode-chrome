@@ -64,8 +64,9 @@ try {
     // generate url and qr code
     chrome.tabs.getSelected(null, function (tab) {
         $url.val(tab.url);
-        $url.trigger('keyup');
     });
 } catch (e) {
     console.log(e);
 }
+
+$url.trigger('keyup');
