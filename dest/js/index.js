@@ -53,6 +53,9 @@ $schema1.on('keyup', generateQr);
 try {
     // init input data
     chrome.storage.sync.get('schema', function (storage) {
+        if (storage.schema === undefined) {
+            storage.schema = ['', 'dianping://web?url='];
+        }
         $schema0.val(storage.schema[0]);
         $schema1.val(storage.schema[1]);
 
