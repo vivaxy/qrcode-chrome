@@ -29,13 +29,15 @@ var utf16to8 = function (str) {
     $schema1 = $('#schema1'),
 
     generateQr = function () {
+        // TODO use redirect for wechat to open in other app
         var schema0 = $schema0.val(),
-            schema1 = $schema1.val();
+            schema1 = $schema1.val(),
+            url = $url.val();
         $qr0.html('').qrcode({
-            text: utf16to8(schema0 + $url.val())
+            text: utf16to8(schema0 + url)
         });
         $qr1.html('').qrcode({
-            text: utf16to8(schema1 + $url.val())
+            text: utf16to8(schema1 + url)
         });
         try {
             chrome.storage.sync.set({'schema': [schema0, schema1]}, function () {
