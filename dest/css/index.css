@@ -3,6 +3,7 @@
 }
 
 body {
+    /* maximum height of 600px and maximum width of 800px */
     margin: 0 auto;
     width: 560px;
     height: 340px;
