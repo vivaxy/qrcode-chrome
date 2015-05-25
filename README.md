@@ -1,7 +1,7 @@
 # qrcode-chrome
 chrome extension
 
-## [download](http://vivaxy.github.io/qrcode-chrome/qrcode.crx)
+## [download](https://chrome.google.com/webstore/detail/qrcode/nghpcjjmhemilbphegklaehbmoepfokk)
 
 ## screenshot
 
