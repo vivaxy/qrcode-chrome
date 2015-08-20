@@ -34,10 +34,11 @@ var utf16to8 = function (str) {
             schema1 = $schema1.val(),
             url = $url.val();
         $qr0.html('').qrcode({
-            text: utf16to8(schema0 + url)
+            // encode url
+            text: utf16to8(schema0 + (schema0 === '' ? url : encodeURIComponent(url)))
         });
         $qr1.html('').qrcode({
-            text: utf16to8(schema1 + url)
+            text: utf16to8(schema1 + (schema1 === '' ? url : encodeURIComponent(url)))
         });
         try {
             chrome.storage.sync.set({'schema': [schema0, schema1]}, function () {
