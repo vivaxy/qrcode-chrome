@@ -36,6 +36,6 @@ QrModel.prototype = {
     getText: function () {
         var url = this.urlInput.value,
             precessedUrl = this.schema === '' ? url : encodeURIComponent(url);
-        return this.redirectPage + '#' + this.schema + precessedUrl;
+        return this.redirectPage + '#' + encodeURIComponent(this.schema + precessedUrl);
     }
 };
