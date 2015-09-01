@@ -7,4 +7,5 @@ var url = decodeURIComponent(location.hash.slice(1)),
     a = document.querySelector('a');
 a.href = url;
 a.textContent = url;
-window.location = url;
+// `location.href` `window.location` same?
+location.href = url;
