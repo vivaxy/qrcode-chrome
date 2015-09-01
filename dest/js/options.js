@@ -3,27 +3,35 @@
  * @author vivaxy
  */
 'use strict';
-var input = document.querySelector('input'),
-    button = document.querySelector('button');
+var redirect = function (container) {
+    var urlInput = container.querySelector('.js-url'),
+        redirectSwitch = container.querySelector('.js-on'),
+        saveButton = container.querySelector('.js-save');
 
-try {
-    chrome.storage.sync.get({
-        redirectPageUrl: 'http://vivaxy.github.io/qrcode-chrome/service/index.html'
-    }, function (storage) {
-        input.value = storage.redirectPageUrl;
-    });
-} catch (e) {
-    // not in chrome extension
-}
-
-button.addEventListener('click', function () {
     try {
-        chrome.storage.sync.set({
-            redirectPageUrl: input.value
-        }, function () {
-            alert('redirect page url saved');
+        chrome.storage.sync.get({
+            redirectPageUrl: 'http://vivaxy.github.io/qrcode-chrome/service/index.html',
+            redirectOn: true
+        }, function (storage) {
+            urlInput.value = storage.redirectPageUrl;
+            redirectSwitch.checked = storage.redirectOn;
         });
     } catch (e) {
         // not in chrome extension
     }
-}, false);
+
+    saveButton.addEventListener('click', function () {
+        try {
+            chrome.storage.sync.set({
+                redirectPageUrl: urlInput.value,
+                redirectOn: redirectSwitch.checked
+            }, function () {
+                alert('redirect page url saved');
+            });
+        } catch (e) {
+            // not in chrome extension
+        }
+    }, false);
+};
+
+redirect(document.querySelector('.js-redirect'));

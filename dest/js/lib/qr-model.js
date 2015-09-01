@@ -6,10 +6,11 @@
 var QrModel = function (options) {
     var _this = this;
     this.index = options.index;
-    this.redirectPageUrl = options.redirectPageUrl;
     this.container = options.container;
     this.urlInput = options.urlInput;
     this.schema = options.schema;
+    this.redirectOn = options.redirectOn;
+    this.redirectPageUrl = options.redirectPageUrl;
     this.schemaInput = this.container.querySelector('input');
     this.qrCodeContainer = this.container.querySelector('.qr');
 
@@ -48,7 +49,12 @@ QrModel.prototype = {
     },
     getText: function () {
         var url = this.urlInput.value,
-            precessedUrl = this.schema === '' ? url : encodeURIComponent(url);
-        return this.redirectPageUrl + '#' + encodeURIComponent(this.schema + precessedUrl);
+            precessedUrl = this.schema === '' ? url : encodeURIComponent(url),
+            redirectUrl = this.redirectPageUrl + '#' + encodeURIComponent(this.schema + precessedUrl);
+        if (this.redirectOn) {
+            return this.schema === '' ? redirectUrl : this.schema + encodeURIComponent(redirectUrl);
+        } else {
+            return this.schema + precessedUrl;
+        }
     }
 };

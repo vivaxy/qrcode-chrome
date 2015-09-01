@@ -3,27 +3,32 @@
  * @author vivaxy
  */
 
-var defaultSchemaList = ['', 'dianping://web?url='],
-    defaultRedirectPageUrl = 'http://vivaxy.github.io/qrcode-chrome/service/index.html',
+var defaultOptions = {
+        schema: ['', 'dianping://web?url='],
+        redirectOn: true,
+        redirectPageUrl: 'http://vivaxy.github.io/qrcode-chrome/service/index.html'
+    },
     urlInput = document.querySelector('#url'),
-    init = function (schemaList, redirectPageUrl) {
+    init = function (options) {
         return Array.prototype.map.call(document.querySelectorAll('.qr-each'), function (qrEach, index) {
             return new QrModel({
                 index: index,
                 container: qrEach,
                 urlInput: urlInput,
-                schema: schemaList[index],
-                redirectPageUrl: redirectPageUrl
+                schema: options.schema[index],
+                redirectOn: options.redirectOn,
+                redirectPageUrl: options.redirectPageUrl
             });
         });
     };
 try {
     // init input data
-    chrome.storage.sync.get({
-        schema: defaultSchemaList,
-        redirectPageUrl: defaultRedirectPageUrl
-    }, function (storage) {
-        init(storage.schema, storage.redirectPageUrl);
+    chrome.storage.sync.get(defaultOptions, function (storage) {
+        init({
+            schema: storage.schema,
+            redirectOn: storage.redirectOn,
+            redirectPageUrl: storage.redirectPageUrl
+        });
         // generate url and qr code
         chrome.tabs.getSelected(null, function (tab) {
             urlInput.value = tab.url;
@@ -32,7 +37,7 @@ try {
         });
     });
 } catch (e) {
-    init(defaultSchemaList, defaultRedirectPageUrl);
+    init(defaultOptions);
 }
 
 setTimeout(function () {
