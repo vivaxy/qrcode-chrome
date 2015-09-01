@@ -5,7 +5,8 @@
 'use strict';
 var QrModel = function (options) {
     var _this = this;
-    this.redirectPage = 'http://vivaxy.github.io/qrcode-chrome/service/index.html';
+    this.index = options.index;
+    this.redirectPageUrl = options.redirectPageUrl;
     this.container = options.container;
     this.urlInput = options.urlInput;
     this.schema = options.schema;
@@ -24,6 +25,18 @@ var QrModel = function (options) {
     this.schemaInput.addEventListener('keyup', function () {
         _this.schema = _this.schemaInput.value;
         _this.update.call(_this);
+        try {
+            chrome.storage.sync.get({
+                schema: []
+            }, function (storage) {
+                var schema = storage.schema;
+                schema[_this.index] = _this.schema;
+                chrome.storage.sync.set({schema: schema}, function () {
+                    // saved
+                });
+            });
+        } catch (e) {
+        }
     }, false);
 };
 
@@ -36,6 +49,6 @@ QrModel.prototype = {
     getText: function () {
         var url = this.urlInput.value,
             precessedUrl = this.schema === '' ? url : encodeURIComponent(url);
-        return this.redirectPage + '#' + encodeURIComponent(this.schema + precessedUrl);
+        return this.redirectPageUrl + '#' + encodeURIComponent(this.schema + precessedUrl);
     }
 };
