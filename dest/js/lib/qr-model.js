@@ -5,6 +5,7 @@
 'use strict';
 var QrModel = function (options) {
     var _this = this;
+    this.redirectPage = 'http://vivaxy.github.io/qrcode-chrome/service/index.html';
     this.container = options.container;
     this.urlInput = options.urlInput;
     this.schema = options.schema;
@@ -35,6 +36,6 @@ QrModel.prototype = {
     getText: function () {
         var url = this.urlInput.value,
             precessedUrl = this.schema === '' ? url : encodeURIComponent(url);
-        return this.schema + precessedUrl;
+        return this.redirectPage + '#' + this.schema + precessedUrl;
     }
 };
