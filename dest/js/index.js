@@ -8,9 +8,9 @@ var defaultOptions = {
         redirectOn: true,
         redirectPageUrl: 'http://vivaxy.github.io/qrcode-chrome/service/index.html'
     },
-    urlInput = document.querySelector('#url'),
+    urlInput = document.querySelector('.js-url'),
     init = function (options) {
-        return Array.prototype.map.call(document.querySelectorAll('.qr-each'), function (qrEach, index) {
+        return Array.prototype.map.call(document.querySelectorAll('.js-qr-container'), function (qrEach, index) {
             return new QrModel({
                 index: index,
                 container: qrEach,

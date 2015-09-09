@@ -5,8 +5,8 @@
 body {
     /* maximum height of 600px and maximum width of 800px */
     margin: 0 auto;
-    width: 560px;
-    height: 340px;
+    width: 800px;
+    height: 460px;
     background-color: #fff;
     border: none;
 }
@@ -50,25 +50,25 @@ input:focus::-webkit-input-placeholder {
 }
 
 .qr-main {
-    width: 560px;
+    width: 800px;
     display: -webkit-box;
 }
 
 .qr-each {
     width: 0;
-    height: 280px;
+    height: 400px;
     -webkit-box-flex: 1;
-    padding: 0 20px;
+    margin: 0 20px;
 }
 
 .qr {
     margin: 20px 0;
-    width: 240px;
-    height: 240px;
+    width: 360px;
+    height: 360px;
 }
 
 .qr canvas {
-    width: 240px;
-    height: 240px;
+    width: 360px;
+    height: 360px;
     display: block;
 }

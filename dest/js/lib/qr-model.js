@@ -11,14 +11,14 @@ var QrModel = function (options) {
     this.schema = options.schema;
     this.redirectOn = options.redirectOn;
     this.redirectPageUrl = options.redirectPageUrl;
-    this.schemaInput = this.container.querySelector('input');
-    this.qrCodeContainer = this.container.querySelector('.qr');
+    this.schemaInput = this.container.querySelector('.js-input');
+    this.qrCodeContainer = this.container.querySelector('.js-qr');
 
     this.schemaInput.value = this.schema;
     this.qrcode = new QRCode(this.qrCodeContainer, {
         text: this.getText(),
-        width: 240,
-        height: 240,
+        width: 360,
+        height: 360,
         colorDark: 'rgba(0, 0, 0, 1)',
         colorLight: 'rgba(0, 0, 0, 0)'
     });
