@@ -1026,7 +1026,7 @@ var QRCode;
             throw new Error("Too long data");
         }
 
-        return nType;
+        return nType + 5;
     }
 
     function _getUTF8Length(sText) {
