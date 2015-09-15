@@ -97,6 +97,28 @@ var QRCode;
         }, getModuleCount: function () {
             return this.moduleCount;
         }, make: function () {
+            if (this.typeNumber < 1) {
+                var typeNumber = 1;
+                for (typeNumber = 1; typeNumber < 40; typeNumber++) {
+                    var rsBlocks = QRRSBlock.getRSBlocks(typeNumber, this.errorCorrectLevel);
+
+                    var buffer = new QRBitBuffer();
+                    var totalDataCount = 0;
+                    for (var i = 0; i < rsBlocks.length; i++) {
+                        totalDataCount += rsBlocks[i].dataCount;
+                    }
+
+                    for (var i = 0; i < this.dataList.length; i++) {
+                        var data = this.dataList[i];
+                        buffer.put(data.mode, 4);
+                        buffer.put(data.getLength(), QRUtil.getLengthInBits(data.mode, typeNumber));
+                        data.write(buffer);
+                    }
+                    if (buffer.getLengthInBits() <= totalDataCount * 8)
+                        break;
+                }
+                this.typeNumber = typeNumber;
+            }
             this.makeImpl(false, this.getBestMaskPattern());
         }, makeImpl: function (test, maskPattern) {
             this.moduleCount = this.typeNumber * 4 + 17;
@@ -986,55 +1008,6 @@ var QRCode;
     })();
 
     /**
-     * Get the type by string length
-     *
-     * @private
-     * @param {String} sText
-     * @param {Number} nCorrectLevel
-     * @return {Number} type
-     */
-    function _getTypeNumber(sText, nCorrectLevel) {
-        var nType = 1;
-        var length = _getUTF8Length(sText);
-
-        for (var i = 0, len = QRCodeLimitLength.length; i <= len; i++) {
-            var nLimit = 0;
-
-            switch (nCorrectLevel) {
-                case QRErrorCorrectLevel.L :
-                    nLimit = QRCodeLimitLength[i][0];
-                    break;
-                case QRErrorCorrectLevel.M :
-                    nLimit = QRCodeLimitLength[i][1];
-                    break;
-                case QRErrorCorrectLevel.Q :
-                    nLimit = QRCodeLimitLength[i][2];
-                    break;
-                case QRErrorCorrectLevel.H :
-                    nLimit = QRCodeLimitLength[i][3];
-                    break;
-            }
-
-            if (length <= nLimit) {
-                break;
-            } else {
-                nType++;
-            }
-        }
-
-        if (nType > QRCodeLimitLength.length) {
-            throw new Error("Too long data");
-        }
-
-        return nType + 5;
-    }
-
-    function _getUTF8Length(sText) {
-        var replacedText = encodeURI(sText).toString().replace(/\%[0-9a-fA-F]{2}/g, 'a');
-        return replacedText.length + (replacedText.length != sText ? 3 : 0);
-    }
-
-    /**
      * @class QRCode
      * @constructor
      * @example
@@ -1106,7 +1079,7 @@ var QRCode;
      * @param {String} sText link data
      */
     QRCode.prototype.makeCode = function (sText) {
-        this._oQRCode = new QRCodeModel(_getTypeNumber(sText, this._htOption.correctLevel), this._htOption.correctLevel);
+        this._oQRCode = new QRCodeModel(-1, this._htOption.correctLevel);
         this._oQRCode.addData(sText);
         this._oQRCode.make();
         //this._el.title = sText;

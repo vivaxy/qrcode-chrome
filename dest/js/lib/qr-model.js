@@ -20,8 +20,7 @@ var QrModel = function (options) {
         width: 360,
         height: 360,
         colorDark: 'rgba(0, 0, 0, 1)',
-        colorLight: 'rgba(0, 0, 0, 0)',
-        typeNumber: -1
+        colorLight: 'rgba(0, 0, 0, 0)'
     });
     this.urlInput.addEventListener('keyup', _this.update.bind(_this), false);
     this.schemaInput.addEventListener('keyup', function () {
