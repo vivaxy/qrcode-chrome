@@ -10,23 +10,24 @@ body {
     margin: 0;
 }
 
-article {
+body article {
     margin: 0 20px;
 }
 
-h1 {
+body article section {
+    -webkit-padding-start: 18px;
+    margin-bottom: 24px;
+    margin-top: 8px;
+    max-width: 600px;
+}
+
+body article h1 {
     font-size: 1.5em;
     margin: 0;
     padding: 21px 0 13px;
 }
 
-h3 {
-    color: black;
-    font-size: 1.2em;
-    margin-bottom: 0.8em;
-}
-
-h1:after {
+body article h1:after {
     background-color: #eee;
     content: ' ';
     display: block;
@@ -35,26 +36,35 @@ h1:after {
     top: 13px;
 }
 
-input[type="text"] {
-    -webkit-box-flex: 1;
+body article section h3 {
+    color: black;
+    font-size: 1.4em;
+    margin-bottom: 0.8em;
+    -webkit-margin-start: -18px;
 }
 
-input[type="checkbox"] {
-    margin-top: 8px;
-}
-
-p {
+body article section p {
     display: -webkit-box;
-    height: 30px;
     margin: 4px 0;
 }
 
-p > span {
+body article section p > span {
     display: block;
     line-height: 30px;
     margin-right: 8px;
+    width: 46px;
 }
 
-p > input {
+body article section p > input {
     display: block;
+}
+
+body article section p > input[type="text"] {
+    display: block;
+    -webkit-box-flex: 1;
+}
+
+body article section p > input[type="checkbox"] {
+    display: block;
+    margin-top: 8px;
 }

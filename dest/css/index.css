@@ -11,11 +11,11 @@ body {
     border: none;
 }
 
-.pull-up {
+body.pull-up {
     transform: translateY(-100%);
 }
 
-input {
+body input {
     font-size: 12px;
     line-height: 20px;
     height: 20px;
@@ -27,48 +27,71 @@ input {
     padding: 0;
 }
 
-input:focus {
+body input:focus {
     color: #fff;
     background-color: #e74c3c;
 }
 
-input::selection {
+body input::selection {
     background-color: #ff0;
     color: #333;
 }
 
-input::-webkit-input-placeholder {
+body input::-webkit-input-placeholder {
     color: #ccc;
 }
 
-input:focus::-webkit-input-placeholder {
+body input:focus::-webkit-input-placeholder {
     color: #e74c3c;
 }
 
-.url-input {
+body .url-input {
     margin: 20px;
 }
 
-.qr-main {
+body .qr-main {
     width: 800px;
     display: -webkit-box;
 }
 
-.qr-each {
+body .qr-main .qr-each {
     width: 0;
     height: 400px;
     -webkit-box-flex: 1;
     margin: 0 20px;
 }
 
-.qr {
+body .qr-main .qr-each .qr {
     margin: 20px 0;
     width: 360px;
     height: 360px;
 }
 
-.qr canvas {
+body .qr-main .qr-each .qr canvas {
     width: 360px;
     height: 360px;
     display: block;
+}
+
+body.small {
+    width: 560px;
+    height: 340px;
+}
+
+body.small .qr-main {
+    width: 560px;
+}
+
+body.small .qr-main .qr-each {
+    height: 280px;
+}
+
+body.small .qr-main .qr-each .qr {
+    width: 240px;
+    height: 240px;
+}
+
+body.small .qr-main .qr-each .qr canvas {
+    width: 240px;
+    height: 240px;
 }

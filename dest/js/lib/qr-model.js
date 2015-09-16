@@ -9,6 +9,7 @@ var QrModel = function (options) {
     this.container = options.container;
     this.urlInput = options.urlInput;
     this.schema = options.schema;
+    this.size = options.size || 360;
     this.redirectOn = options.redirectOn;
     this.redirectPageUrl = options.redirectPageUrl;
     this.schemaInput = this.container.querySelector('.js-input');
@@ -17,8 +18,8 @@ var QrModel = function (options) {
     this.schemaInput.value = this.schema;
     this.qrcode = new QRCode(this.qrCodeContainer, {
         text: this.getText(),
-        width: 360,
-        height: 360,
+        width: this.size,
+        height: this.size,
         colorDark: 'rgba(0, 0, 0, 1)',
         colorLight: 'rgba(0, 0, 0, 0)'
     });
