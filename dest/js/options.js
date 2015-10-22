@@ -4,9 +4,9 @@
  */
 'use strict';
 var size = function (container) {
-        var name = 'size',
-            largerSizeSwitch = container.querySelector('.js-on'),
-            saveButton = container.querySelector('.js-save');
+        var name = 'size';
+        var largerSizeSwitch = container.querySelector('.js-on');
+        var saveButton = container.querySelector('.js-save');
         try {
             chrome.storage.sync.get({
                 largerSizeOn: true
@@ -26,13 +26,13 @@ var size = function (container) {
             } catch (e) {
                 // not in chrome extension
             }
-        }, false);
+        });
     },
     redirect = function (container) {
-        var name = 'redirect',
-            urlInput = container.querySelector('.js-url'),
-            redirectSwitch = container.querySelector('.js-on'),
-            saveButton = container.querySelector('.js-save');
+        var name = 'redirect';
+        var urlInput = container.querySelector('.js-url');
+        var redirectSwitch = container.querySelector('.js-on');
+        var saveButton = container.querySelector('.js-save');
 
         try {
             chrome.storage.sync.get({
@@ -57,7 +57,7 @@ var size = function (container) {
             } catch (e) {
                 // not in chrome extension
             }
-        }, false);
+        });
     };
 
 size(document.querySelector('.js-size'));

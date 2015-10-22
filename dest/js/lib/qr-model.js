@@ -5,17 +5,20 @@
 'use strict';
 var QrModel = function (options) {
     var _this = this;
+    var INPUT_SELECTOR = '.js-input';
+    var QR_SELECTOR = '.js-qr';
+    var INPUT_ACTION_TRIGGER_EVENT = 'keyup';
     this.index = options.index;
     this.container = options.container;
     this.urlInput = options.urlInput;
-    this.schema = options.schema;
+    this.scheme = options.scheme;
     this.size = options.size || 360;
     this.redirectOn = options.redirectOn;
     this.redirectPageUrl = options.redirectPageUrl;
-    this.schemaInput = this.container.querySelector('.js-input');
-    this.qrCodeContainer = this.container.querySelector('.js-qr');
+    this.schemeInput = this.container.querySelector(INPUT_SELECTOR);
+    this.qrCodeContainer = this.container.querySelector(QR_SELECTOR);
 
-    this.schemaInput.value = this.schema;
+    this.schemeInput.value = this.scheme;
     this.qrcode = new QRCode(this.qrCodeContainer, {
         text: this.getText(),
         width: this.size,
@@ -23,23 +26,23 @@ var QrModel = function (options) {
         colorDark: 'rgba(0, 0, 0, 1)',
         colorLight: 'rgba(0, 0, 0, 0)'
     });
-    this.urlInput.addEventListener('keyup', _this.update.bind(_this), false);
-    this.schemaInput.addEventListener('keyup', function () {
-        _this.schema = _this.schemaInput.value;
+    this.urlInput.addEventListener(INPUT_ACTION_TRIGGER_EVENT, _this.update.bind(_this));
+    this.schemeInput.addEventListener(INPUT_ACTION_TRIGGER_EVENT, function () {
+        _this.scheme = _this.schemeInput.value;
         _this.update.call(_this);
         try {
             chrome.storage.sync.get({
-                schema: []
+                scheme: []
             }, function (storage) {
-                var schema = storage.schema;
-                schema[_this.index] = _this.schema;
-                chrome.storage.sync.set({schema: schema}, function () {
+                var scheme = storage.scheme;
+                scheme[_this.index] = _this.scheme;
+                chrome.storage.sync.set({scheme: scheme}, function () {
                     // saved
                 });
             });
         } catch (e) {
         }
-    }, false);
+    });
 };
 
 QrModel.prototype = {
@@ -50,12 +53,12 @@ QrModel.prototype = {
     },
     getText: function () {
         var url = this.urlInput.value,
-            precessedUrl = this.schema === '' ? url : encodeURIComponent(url),
-            redirectUrl = this.redirectPageUrl + '#' + encodeURIComponent(this.schema + precessedUrl);
+            precessedUrl = this.scheme === '' ? url : encodeURIComponent(url),
+            redirectUrl = this.redirectPageUrl + '#' + encodeURIComponent(this.scheme + precessedUrl);
         if (this.redirectOn) {
-            return this.schema === '' ? redirectUrl : this.schema + encodeURIComponent(redirectUrl);
+            return this.scheme === '' ? redirectUrl : this.scheme + encodeURIComponent(redirectUrl);
         } else {
-            return this.schema + precessedUrl;
+            return this.scheme + precessedUrl;
         }
     }
 };

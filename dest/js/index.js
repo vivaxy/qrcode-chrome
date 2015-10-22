@@ -3,7 +3,7 @@
  * @author vivaxy
  */
 var defaultOptions = {
-        schema: ['', 'dianping://web?url='],
+        scheme: ['', 'dianping://web?url='],
         redirectOn: true,
         largerSizeOn: true,
         redirectPageUrl: 'http://vivaxy.github.io/qrcode-chrome/service/index.html'
@@ -21,7 +21,7 @@ var defaultOptions = {
                 index: index,
                 container: qrEach,
                 urlInput: urlInput,
-                schema: options.schema[index],
+                scheme: options.scheme[index],
                 redirectOn: options.redirectOn,
                 size: options.largerSizeOn ? 360 : 240,
                 redirectPageUrl: options.redirectPageUrl
@@ -32,7 +32,7 @@ try {
     // init input data
     chrome.storage.sync.get(defaultOptions, function (storage) {
         init({
-            schema: storage.schema,
+            scheme: storage.scheme,
             redirectOn: storage.redirectOn,
             largerSizeOn: storage.largerSizeOn,
             redirectPageUrl: storage.redirectPageUrl
