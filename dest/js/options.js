@@ -37,7 +37,7 @@ var size = function (container) {
         try {
             chrome.storage.sync.get({
                 redirectPageUrl: 'http://vivaxy.github.io/qrcode-chrome/service/index.html',
-                redirectOn: true
+                redirectOn: false // default to false
             }, function (storage) {
                 urlInput.value = storage.redirectPageUrl;
                 redirectSwitch.checked = storage.redirectOn;

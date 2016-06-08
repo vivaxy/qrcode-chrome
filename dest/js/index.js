@@ -4,7 +4,7 @@
  */
 var defaultOptions = {
         scheme: ['', 'dianping://web?url='],
-        redirectOn: true,
+        redirectOn: false,
         largerSizeOn: true,
         redirectPageUrl: 'http://vivaxy.github.io/qrcode-chrome/service/index.html'
     },
