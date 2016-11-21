@@ -8,3 +8,8 @@ chrome extension
 ## [download](https://chrome.google.com/webstore/detail/qrcode/nghpcjjmhemilbphegklaehbmoepfokk)
 
 ## use it [online](http://vivaxy.github.io/qrcode-chrome/dest/index.html)
+
+## CONTRIBUTE
+
+- update version in `dest/manifest.json`
+- run `make`

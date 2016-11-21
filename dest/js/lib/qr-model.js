@@ -3,7 +3,7 @@
  * @author vivaxy
  */
 'use strict';
-var QrModel = function (options) {
+var QrModel = function(options) {
     var _this = this;
     var INPUT_SELECTOR = '.js-input';
     var QR_SELECTOR = '.js-qr';
@@ -27,16 +27,16 @@ var QrModel = function (options) {
         colorLight: 'rgba(0, 0, 0, 0)'
     });
     this.urlInput.addEventListener(INPUT_ACTION_TRIGGER_EVENT, _this.update.bind(_this));
-    this.schemeInput.addEventListener(INPUT_ACTION_TRIGGER_EVENT, function () {
+    this.schemeInput.addEventListener(INPUT_ACTION_TRIGGER_EVENT, function() {
         _this.scheme = _this.schemeInput.value;
         _this.update.call(_this);
         try {
             chrome.storage.sync.get({
                 scheme: []
-            }, function (storage) {
+            }, function(storage) {
                 var scheme = storage.scheme;
                 scheme[_this.index] = _this.scheme;
-                chrome.storage.sync.set({scheme: scheme}, function () {
+                chrome.storage.sync.set({scheme: scheme}, function() {
                     // saved
                 });
             });
@@ -47,11 +47,11 @@ var QrModel = function (options) {
 
 QrModel.prototype = {
     constructor: QrModel,
-    update: function () {
+    update: function() {
         this.qrcode.makeCode(this.getText());
         return this;
     },
-    getText: function () {
+    getText: function() {
         var url = this.urlInput.value,
             precessedUrl = this.scheme === '' ? url : encodeURIComponent(url),
             redirectUrl = this.redirectPageUrl + '#' + encodeURIComponent(this.scheme + precessedUrl);
