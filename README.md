@@ -1,21 +1,21 @@
-# QRCODE-CHROME
-chrome extension
+# QRCode-Chrome
 
-## SCREENSHOT
+A Chrome extension.
+
+## Screenshots
 
 ![0](screenshot/0.png)
 
-## INSTALLATION
+## Installation
 
-### [download](https://chrome.google.com/webstore/detail/qrcode/nghpcjjmhemilbphegklaehbmoepfokk)
+### [Download](https://chrome.google.com/webstore/detail/qrcode/nghpcjjmhemilbphegklaehbmoepfokk)
 
-### use it [online](http://vivaxy.github.io/qrcode-chrome/dest/index.html)
+### Use it [online](http://vivaxy.github.io/qrcode-chrome/dest/index.html)
 
-## CONTRIBUTE
+## Contributing
 
-- update version in `dest/manifest.json`
-- run `make`
+[Contributing](Contributing.md)
 
-## CHANGELOG
+## Change Log
 
-[CHANGELOG](CHANGELOG.md)
+[Change Log](CHANGELOG.md)
