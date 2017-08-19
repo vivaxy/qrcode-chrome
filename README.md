@@ -14,7 +14,7 @@ A Chrome extension.
 
 ## Contributing
 
-[Contributing](Contributing.md)
+[Contributing](CONTRIBUTING.md)
 
 ## Change Log
 
